@@ -1,185 +1,111 @@
 <p align="center">
-<img src="https://imgur.com/dXI35O0.png alt="Traffic Examination"/>
+<img src="https://i.imgur.com/Clzj7Xs.png" alt="osTicket logo"/>
+</p>
+
+<h1>osTicket - Prerequisites and Installation</h1>
+This tutorial outlines the prerequisites and installation of the open-source help desk ticketing system osTicket.<br />
+
+
+<h2>Video Demonstration</h2>
+
+- ### https://www.youtube.com/
+
+<h2>Environments and Technologies Used</h2>
+
+- Microsoft Azure (Virtual Machines/Compute)
+- Remote Desktop
+- Internet Information Services (IIS)
+
+<h2>Operating Systems Used </h2>
+
+- Windows 10</b> (21H2)
+
+<h2>List of Prerequisites</h2>
+
+- Azure Virtual Machine
+- osTicket Installation files
+- Heidi SQL
+
+<h2>Installation Steps</h2>
+
+<p>
+</p>
+<p>
+Welcome to the first tutorial in this series! Jumping right into it, we will have to create a Virtual machine using the Microsoft Azure portal. We will be using a VM which, simply put is a remote computer. We are using a VM in order to protect our physical machine in the event something breaks. Create a resource group and title it "osTicket". Afterwards create a VM with 2-4 CPUs. In this example I will be using 4 CPUs.
+  
+ <img src="https://i.imgur.com/To5ibZ7.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 </p>
 <br />
-<br />
-
-<h2>Technologies and Environments Used<a><h2/>
-
-- Azure Virtual Machines
-- PHP Manager
-- MySQL
-- osTicket (Help Desk Ticketing System)
-
-
-<h2>In this tutorial I will install osTicket on an Azure VM (Virtual Machine). This tutorial assumes you have already created a VM and are logged in to it. The install files for osTicket can be found <a href= https://drive.google.com/drive/u/1/folders/1APMfNyfNzcxZC6EzdaNfdZsUwxWYChf6 /> here <a><h2/>
-
-<p align="center">
-<img src="https://imgur.com/5JmaKwD.png alt="Traffic Examination"/>
+<p>
+</p>
+<p>Next simply connect to your newly created VM through RDP with Remote Desktop Connection plugging in the public IPv4 address. If you are a Mac user you will have to download Microsoft RDP. 
+</p>
+<img src="https://i.imgur.com/uLVKzxS.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 </p>
 <br />
-<br />
 
-Step 1. Install / Enable IIS in Windows WITH CGI (World Wide Web Services -> Application Development Features -> [X] CGI)
-
-<p align="center">
-<img src="https://imgur.com/TLFqV00.png alt="Traffic Examination"/>
+<p>
+</p>
+<p>
+Alright, now that we are connected to our VM, we will have to enable IIS. Simply access the control panel then select "uninstall a program". Off to the left select "Turn windows features on or off". A list will appear then you will enable Internet Information Services.
+</p>  
+<img src="https://i.imgur.com/qtEnuWu.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 </p>
 <br />
-<br />
-
-Step 2. From the installation files, install PHP Manager for IIS (PHPManagerForIIS_V1.5.0.msi)
-
-<p align="center">
-<img src="https://imgur.com/hX8SZyK.png alt="Traffic Examination"/>
+</p>
+<p>
+Excellent. Now that we have enabled IIS, we need to install Web Platform Installer. I have provided a link here: https://drive.google.com/drive/u/0/folders/1APMfNyfNzcxZC6EzdaNfdZsUwxWYChf6
+  That link will provide you with all of the material you need to download to get osTicket up and running. Simply click the link and install the Web Platform Installer
+</p>
+<img src="https://i.imgur.com/AxHCfQ6.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>  
+</p>
+<p>
+Once you have installed Web Installer Platform open it. From inside the application you are going to install MySQL 5.5 Afterwards install x86 version of PHP up until 7.3. There are some failed files such as C++ redistributable package as well as PHP 7.3.8 and PHP Manager for IIS those files can be found with the install link.
+</p>
+<img src="https://i.imgur.com/JJ8bZeJ.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+<p>
+</p>
+<p>
+Next download osTicket. Then extract and copy the "upload" folder into c:\inetpub\wwwroot. Afterwards rename the folder to osTicket
+</P>
+<img src="https://i.imgur.com/TUGiSKi.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 </p>
 <br />
-<br />
-
-Step 3. From the installation files, install the Rewrite Module (rewrite_amd64_en-US.msi)
-
-<p align="center">
-<img src="https://imgur.com/hX8SZyK.png alt="Traffic Examination"/>
+<p>
 </p>
-<br />
-<br />
-
-Step 4. Create the directory C:\PHP
-
-<p align="center">
-<img src="https://imgur.com/70SOSrg.png alt="Traffic Examination"/>
+<p>
+Open IIS Manager and restart the server. Once inside IIS manager go to Sites->Default->osTicket on the right, click "Browse*.80" from there your default browser should open osTicket webserver.
 </p>
+<img src="https://i.imgur.com/4AkTkV0.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 <br />
-<br />
-
-Step 5. From the installation files unzip PHP 7.3.8 (php-7.3.8-nts-Win32-VC15-x86.zip) into C:\PHP
-
-<p align="center">
-<img src="https://imgur.com/bJ4SjBM.png alt="Traffic Examination"/>
+<p>
 </p>
-<br />
-<br />
-
-Step 6. From the installation files install VC_redist.x86.exe.
-
-<p align="center">
-<img src="https://imgur.com/bsCwU9j.png alt="Traffic Examination"/>
+<p>
+Go back into IIS manager and enable some extensions. To do this you have to go to Sites->Default->osTicket
+Then double click on PHP manager. Click on "Disable or enable an extension" Enable "php_intl.dll" & "php_opcache.dll" then refresh the osTicket webserver and obsereve the changes "Intl Extension" should now be enabled. 
 </p>
+<img src="https://i.imgur.com/APZgUTT.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 <br />
-<br />
-
-
-Step 7. From the installation files install MySQL 5.5.62 (mysql-5.5.62-win32.msi)
- - Typical Setup ->
- - Launch Configuration Wizard (after install) ->
- - Standard Configuration ->
- - Password1
-
-7.b
-<p align="center">
-<img src="https://imgur.com/1rBQpJ2.png alt="Traffic Examination"/>
+<p>
 </p>
-<br />
-<br />
-
-7c.
-<p align="center">
-<img src="https://imgur.com/NQInyxj.png alt="Traffic Examination"/>
+<p>
+Go back into c:\inetpub\wwwroot\osTicket\include\ost-sampleconfig.php rename the file to c:\inetpub\wwwroot\osTicket\include\ost-config.php
+Assign permissions to ost-config.php Disable inheritance->Removeall
+New Permissions->Everyone->all
 </p>
+<img src="https://i.imgur.com/1nYaYGe.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 <br />
-<br />
-
-7d.
-<p align="center">
-<img src="https://imgur.com/qBAMYl6.png alt="Traffic Examination"/>
+<p>
 </p>
-<br />
-<br />
-
-Step 8. Open IIS as an Admin, register PHP, then restart the server 
-
-
-<p align="center">
-<img src="https://imgur.com/Wyz1cHU.png alt="Traffic Examination"/>
+<p>
+Afterwards continue setting up osTicket in the browser (click continue) then you will name the Helpdesk to your liking. Select a default email that will receive emails from customers who submit tickets. 
 </p>
+<img src="https://i.imgur.com/RmVk3q5.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 <br />
-<br />
-
-8b.
-<p align="center">
-<img src="https://imgur.com/xUuPB6u.png alt="Traffic Examination"/>
-</p>
-<br />
-<br />
-
-8c.
-<p align="center">
-<img src="https://imgur.com/ASXOKyF.png alt="Traffic Examination"/>
-</p>
-<br />
-<br />
-
-8d.
-<p align="center">
-<img src="https://imgur.com/GLi5Pqf.png alt="Traffic Examination"/>
-</p>
-<br />
-<br />
-
-Step 9. Install osTicket v1.15.8
-
-
-<p align="center">
-<img src="https://imgur.com/GBdqll4.png alt="Traffic Examination"/>
-</p>
-<br />
-<br />
-
-9b. Copy “upload” folder to c:\inetpub\wwwroot
-<p align="center">
-<img src="https://imgur.com/4jdRjRF.png alt="Traffic Examination"/>
-</p>
-<br />
-<br />
-
-9c. Within C:\inetpub\wwwroot, rename “upload” to “osTicket”
-<p align="center">
-<img src="https://imgur.com/772EfbX.png alt="Traffic Examination"/>
-</p>
-<br />
-<br />
-
-Step 10. Note that some extensions are not enabled
-
-- 10b. Go back to IIS, sites -> Default -> osTicket and double click PHP manager
-
-<p align="center">
-<img src="https://imgur.com/9bPE4OV.png alt="Traffic Examination"/>
-</p>
-<br />
-<br />
-
-- 10c. Click “Enable or disable an extension” and enable these extensions: php_imap.dll, php_intl.dll, php_opcache.dll
-
-<p align="center">
-<img src="https://imgur.com/sKw7cTW.png alt="Traffic Examination"/>
-</p>
-<br />
-<br />
-
-<p align="center">
-<img src="https://imgur.com/UeF0kNg.png alt="Traffic Examination"/>
-</p>
-<br />
-<br />
-
-Step 11. After navigating to http://localhost/osTicket/setup/install, rename the ost-config.php file (see below)
-
-- From: C:\inetpub\wwwroot\osTicket\include\ost-sampleconfig.php
-- To: C:\inetpub\wwwroot\osTicket\include\ost-config.php
-
-<p align="center">
-<img src="https://imgur.com/D1ABrGV.png alt="Traffic Examination"/>
-</p>
-<br />
-<br />
+<p>
+<p>Continue Setting up osticket in the browser MySQL Database: osTicket MySQL Username: root MySQL Password: Password1 Click “Install Now!”
+Congratulations, hopefully it is installed with no errors!
+Clean up
+Delete: C:\inetpub\wwwroot\osTicket\setup
+Set Permissions to “Read” only: C:\inetpub\wwwroot\osTicket\include\ost-config.php
+Login to the osTicket Admin Panel (http://localhost/osTicket/scp/login.php)
