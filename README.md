@@ -8,7 +8,7 @@ This tutorial outlines the prerequisites and installation of the open-source hel
 
 <h2>Video Demonstration</h2>
 
-- ### https://www.youtube.com/
+- ### Coming Soon! 
 
 <h2>Environments and Technologies Used</h2>
 
