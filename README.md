@@ -1,3 +1,6 @@
+[Part 1] [Part 2](https://github.com/SJRUK2000/osticket-post-install-config) [Part 3](https://github.com/SJRUK2000/osticket-ticket-lifecycle)
+
+
 <p align="center">
 <img src="https://i.imgur.com/Clzj7Xs.png" alt="osTicket logo"/>
 </p>
